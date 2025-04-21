@@ -52,6 +52,7 @@ export default {
   },
   mounted() {
     this.fetchData();
+    document.title = "Wheather app"
   },
   methods: {
     async fetchData() {
@@ -59,8 +60,8 @@ export default {
         this.weatherData = null; // Fade-out boshlanishi uchun
 
         // API chaqiruvlari
-        const weatherPromise = fetch(`http://192.168.1.40:8080/api/weather?city=${this.city}`).then(r => r.json());
-        const forecastPromise = fetch(`http://192.168.1.40:8080/api/forecast?city=${this.city}`).then(r => r.json());
+        const weatherPromise = fetch(`http://192.168.0.120:8080/api/weather?city=${this.city}`).then(r => r.json());
+        const forecastPromise = fetch(`http://192.168.0.120:8080/api/forecast?city=${this.city}`).then(r => r.json());
 
         const [weatherJson, forecastJson] = await Promise.all([weatherPromise, forecastPromise]);
 
@@ -78,15 +79,23 @@ export default {
 </script>
 
 <style scoped>
+
 .app {
   font-family: Arial, sans-serif;
-  padding: 200px;
+  padding: auto;
+  padding-top: 50px;
+  padding-left: 100px;
+  padding-right: 100px;
   text-align: center;
   background: url('assets/bg.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   width: 100vw;
   height: 100vh;
+  overflow-wrap:initial;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 /* Select uchun stil */
